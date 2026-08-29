@@ -6,7 +6,7 @@ import heroImg from './assets/images/hero.jpeg';
 import hero2Img from './assets/images/hero2.jpeg';
 
 // Import all images in the directory and directly get their default export (the URL string)
-const imageModules = import.meta.glob('./assets/images/*.{jpg,jpeg,png,JPG}', { eager: true, import: 'default' });
+const imageModules = import.meta.glob('./assets/images/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG,WEBP}', { eager: true, import: 'default' });
 
 // Convert to an array, filtering out the hero images
 const allImages = Object.keys(imageModules)
@@ -80,7 +80,7 @@ function App() {
           <div className="masonry-grid">
             {galleryItems.map((item) => (
               <div key={item.id} className="grid-item">
-                <img src={item.src} alt={item.title} onError={(e) => {
+                <img src={item.src} alt={item.title} loading="lazy" onError={(e) => {
                   // Fallback if image doesn't exist yet
                   e.target.src = `https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=600&h=800&fit=crop&q=80`;
                 }} />

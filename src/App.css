@@ -264,7 +264,14 @@
   }
   .hero-image-side {
     justify-content: center;
-    height: 60vh;
+    height: 50vh;
+    width: 100%;
+    margin-top: 3rem;
+  }
+  .image-stack {
+    width: 100%;
+    max-width: 400px;
+    height: 100%;
   }
   .hero-title { font-size: 4rem; }
   .masonry-grid { column-count: 2; }
