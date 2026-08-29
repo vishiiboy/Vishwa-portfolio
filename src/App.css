@@ -1,0 +1,277 @@
+/* Empty App.css for now, using modular or inline styles where needed, mostly relying on index.css */
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Navbar */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+  padding: 1.5rem 0;
+  transition: var(--transition-smooth);
+}
+
+.navbar .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-links a:hover {
+  color: var(--color-text-muted);
+}
+
+/* Hero Section (Editorial Split Layout) */
+.hero-split {
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6rem 5% 2rem 5%;
+  background-color: var(--color-bg);
+  gap: 4rem;
+}
+
+/* Glowing Ambient Light Effects */
+.hero-split::before,
+.hero-split::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.hero-split::before {
+  top: -10%;
+  left: -10%;
+  width: 50vw;
+  height: 50vw;
+  background: rgba(96, 165, 250, 0.12); /* Subtle Blue */
+}
+
+.hero-split::after {
+  bottom: -20%;
+  right: 10%;
+  width: 60vw;
+  height: 60vw;
+  background: rgba(167, 139, 250, 0.08); /* Subtle Purple */
+}
+
+.hero-text-side {
+  flex: 1;
+  position: relative;
+  z-index: 1;
+  animation: fadeIn 1.5s ease forwards;
+}
+
+.accent-text {
+  display: block;
+  font-family: var(--font-body);
+  color: var(--color-accent);
+  font-size: 0.9rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+}
+
+.hero-title {
+  font-size: 5rem;
+  margin-bottom: 1rem;
+  letter-spacing: 2px;
+  color: var(--color-text);
+}
+
+.hero-subtitle {
+  font-size: 1.2rem;
+  color: var(--color-text-muted);
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.hero-image-side {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 75vh;
+  position: relative;
+  z-index: 1;
+}
+
+.image-stack {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  max-width: 500px;
+}
+
+.hero-portrait {
+  object-fit: cover;
+  object-position: top center;
+  border-radius: 8px;
+  animation: fadeIn 2s ease forwards;
+  transition: var(--transition-smooth);
+}
+
+.back-img {
+  position: absolute;
+  top: 0;
+  right: -5%;
+  width: 60%;
+  height: 75%;
+  z-index: 1;
+  opacity: 0.8;
+  filter: grayscale(30%);
+  box-shadow: -10px 10px 20px rgba(0,0,0,0.3);
+}
+
+.front-img {
+  position: absolute;
+  bottom: 0;
+  left: -5%;
+  width: 60%;
+  height: 85%;
+  z-index: 2;
+  box-shadow: -15px 15px 30px rgba(0,0,0,0.5);
+}
+
+.image-stack:hover .back-img {
+  transform: translate(-10px, -10px);
+  opacity: 1;
+  filter: grayscale(0%);
+}
+
+/* About Section */
+.about {
+  background-color: var(--color-surface);
+  text-align: center;
+}
+
+.about-title {
+  font-size: 3rem;
+  margin-bottom: 2rem;
+}
+
+.about-text {
+  max-width: 800px;
+  margin: 0 auto;
+  font-size: 1.2rem;
+  color: var(--color-text-muted);
+}
+
+.highlight {
+  color: var(--color-text);
+  font-weight: 500;
+}
+
+/* Portfolio Section */
+.portfolio-title {
+  text-align: center;
+  font-size: 3rem;
+  margin-bottom: 3rem;
+}
+
+.masonry-grid {
+  column-count: 3;
+  column-gap: 1.5rem;
+}
+
+.grid-item {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  break-inside: avoid;
+  margin-bottom: 1.5rem;
+}
+
+.grid-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: var(--transition-smooth);
+}
+
+.grid-item:hover img {
+  transform: scale(1.02);
+  filter: brightness(0.9);
+}
+
+.item-overlay {
+  display: none; /* Removed for cleaner editorial look */
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 4rem 0;
+  background-color: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+}
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.social-links a {
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.social-links a:hover {
+  color: var(--color-text-muted);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .hero-split {
+    flex-direction: column;
+    text-align: center;
+    padding-top: 8rem;
+  }
+  .hero-image-side {
+    justify-content: center;
+    height: 60vh;
+  }
+  .hero-title { font-size: 4rem; }
+  .masonry-grid { column-count: 2; }
+}
+
+@media (max-width: 768px) {
+  .hero-title { font-size: 3rem; }
+  .nav-links { display: none; /* simple mobile for now */ }
+  .masonry-grid { column-count: 1; }
+}
