@@ -1,20 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
 
-// Import all images in the directory
-const imageModules = import.meta.glob('./assets/images/*.{jpg,jpeg,png,JPG}', { eager: true });
+// Import hero images explicitly so Vite hashes them correctly for production
+import heroImg from './assets/images/hero.jpeg';
+import hero2Img from './assets/images/hero2.jpeg';
 
-// Convert to an array, filtering out the hero image
+// Import all images in the directory and directly get their default export (the URL string)
+const imageModules = import.meta.glob('./assets/images/*.{jpg,jpeg,png,JPG}', { eager: true, import: 'default' });
+
+// Convert to an array, filtering out the hero images
 const allImages = Object.keys(imageModules)
   .filter(key => !key.toLowerCase().includes('hero.'))
   .map((key, index) => ({
     id: index,
-    src: imageModules[key].default,
+    src: imageModules[key] || '',
     title: `Selected Look ${index + 1}`
   }));
 
-// Sort array alphabetically by filename so photos from the same shoot group together
-const sortedGallery = [...allImages].sort((a, b) => a.src.localeCompare(b.src));
+// Sort array alphabetically by filename so photos from the same shoot group together safely
+const sortedGallery = [...allImages].sort((a, b) => (a.src || '').localeCompare(b.src || ''));
 
 function App() {
   const [scrolled, setScrolled] = useState(false);
@@ -53,8 +57,8 @@ function App() {
         </div>
         <div className="hero-image-side">
           <div className="image-stack">
-            <img src="/src/assets/images/hero2.jpeg" alt="Vishwa Modeling" className="hero-portrait back-img" />
-            <img src="/src/assets/images/hero.jpeg" alt="Vishwa" className="hero-portrait front-img" />
+            <img src={hero2Img} alt="Vishwa Modeling" className="hero-portrait back-img" />
+            <img src={heroImg} alt="Vishwa" className="hero-portrait front-img" />
           </div>
         </div>
       </section>
